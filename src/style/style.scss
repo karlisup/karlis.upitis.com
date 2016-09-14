@@ -1,7 +1,7 @@
-html, body {
-	height: 100%;
-	overflow: hidden;
-}
+// html, body {
+// 	height: 100% !important; //for AMP
+// 	overflow: hidden;
+// }
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 
 		"Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
@@ -11,24 +11,18 @@ body {
 	font-size: 16px;
 }
 
-%shadow {
-	drop-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-}
-
 .karlisup {
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
 	&__👤 {
-		@extend %shadow;
 		margin-top: 0em;
 		margin-bottom: 0;
 		font-size: 5em;
 	}
 	&__🏅 {
-		@extend %shadow;
 		margin-top: .25em;
 		font-size: 2em;
 	}

@@ -12,7 +12,8 @@ gulp.task('css:project', function (done) {
   ]
   return gulp.src('src/style/style.scss')
     .pipe(sass({
-      sourceComments: true
+      outputStyle: 'compressed'
+      // sourceComments: true
     }).on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(gulp.dest('dest/'))

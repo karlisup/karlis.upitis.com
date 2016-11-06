@@ -4,6 +4,8 @@ var postcss = require('gulp-postcss')
 var autoprefixer = require('autoprefixer')
 var browserSync = require('browser-sync')
 var bs1 = browserSync.create('proxy1')
+var reload = bs1.reload
+var minifyHtml = require('gulp-minify-html')
 
 // Project Style processing
 gulp.task('css:project', function (done) {
@@ -20,6 +22,18 @@ gulp.task('css:project', function (done) {
     .pipe(bs1.stream())
 })
 
+// Minify HTML output (from Una Kravets)
+gulp.task('minify-html', function() {
+    var opts = {
+      comments:true,
+      spare:true
+    };
+
+  gulp.src('./src/index.html')
+    .pipe(minifyHtml(opts))
+    .pipe(gulp.dest('dest/'))
+    .pipe(reload({stream:true}));
+});
 /* -------------------------------------
   Browser sync (alt. for livereload)
 ------------------------------------- */
@@ -43,10 +57,11 @@ gulp.task('browser-sync', function (done) {
 ------------------------------------- */
 gulp.task('watch', function (done) {
   gulp.watch(['src/style/**/*.scss'], ['css:project'])
+  gulp.watch(['src/index.html'], ['minify-html'])
   done()
 })
 
 /* -------------------------------------f
   default tasks
 ------------------------------------- */
-gulp.task('default', ['watch', 'css:project', 'browser-sync'])
+gulp.task('default', ['watch', 'css:project', 'minify-html', 'browser-sync'])

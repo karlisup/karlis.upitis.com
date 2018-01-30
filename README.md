@@ -1,2 +1,2 @@
-# karlis.upitis.com
+# karlisup.com
 Personal website
